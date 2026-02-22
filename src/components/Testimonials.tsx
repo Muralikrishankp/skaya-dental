@@ -1,105 +1,69 @@
 "use client";
 
-import { useEffect, useState } from 'react';
-import { Quote, Star } from 'lucide-react';
+import { motion } from "framer-motion";
+import { Star } from "lucide-react";
 
 const reviews = [
-  {
-    id: 1,
-    name: "Sarah Jenkins",
-    text: "The most calming dental experience I've ever had. From the ambiance to the gentle care, Skaya Dental has completely cured my anxiety.",
-    rating: 5
-  },
-  {
-    id: 2,
-    name: "Michael Chen",
-    text: "Incredible attention to detail. Dr. Skaya took the time to explain every step of my implant procedure. The results are flawless.",
-    rating: 5
-  },
-  {
-    id: 3,
-    name: "Elena Rodriguez",
-    text: "I booked online and was seen exactly on time. The clinic feels more like a wellness spa than a dentist's office. Highly recommend.",
-    rating: 5
-  },
-  {
-    id: 4,
-    name: "David T.",
-    text: "My veneers changed my life. The team here is truly world-class, professional, and entirely focused on patient comfort.",
-    rating: 5
-  }
+  { id: 1, name: "Sarah J.", text: "The most calming dental experience I've ever had. Completely cured my anxiety.", rating: 5 },
+  { id: 2, name: "Michael C.", text: "Incredible attention to detail. The 3D scan and implants were flawless.", rating: 5 },
+  { id: 3, name: "Elena R.", text: "The clinic feels more like a wellness spa than a dentist's office. Highly recommend.", rating: 5 },
+  { id: 4, name: "David T.", text: "My veneers changed my life. World-class team.", rating: 5 },
+  { id: 5, name: "Jessica W.", text: "Absolutely stunning results. They truly care about aesthetics.", rating: 5 },
+  { id: 6, name: "Robert K.", text: "Zero pain, perfect communication. The best in the city.", rating: 5 },
 ];
 
 export default function Testimonials() {
-  const [activeIndex, setActiveIndex] = useState(0);
-
-  // Auto-play interval
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveIndex((current) => (current + 1) % reviews.length);
-    }, 6000);
-    return () => clearInterval(interval);
-  }, []);
-
   return (
-    <section className="py-24 bg-navy-dark relative overflow-hidden text-white">
-      {/* Background Decor */}
-      <div className="absolute opacity-10 top-0 left-0 w-full h-full pointer-events-none">
-        <Quote size={400} className="absolute -top-20 -left-20 text-white transform -rotate-12" />
+    <section id="patient-stories" className="py-32 bg-[#FAFAFA] overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 text-center">
+        <h2 className="text-4xl md:text-6xl font-heading font-medium text-[#1C1C1C] tracking-tight mb-4">
+          Proof in the <span className="italic text-[#C5A880]">results.</span>
+        </h2>
+        <p className="text-[#4A4A4A] font-light text-xl">Hundreds of flawless records.</p>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <span className="text-gold font-bold tracking-widest uppercase text-sm mb-3 block">Patient Stories</span>
-          <h2 className="text-3xl md:text-5xl font-bold mb-6">Trusted by Our Community</h2>
-        </div>
-
-        {/* Carousel Area */}
-        <div className="relative max-w-4xl mx-auto min-h-[300px] flex items-center justify-center">
-          {reviews.map((review, index) => (
-            <div 
-              key={review.id}
-              className={`absolute top-0 left-0 w-full h-full transition-all duration-1000 ease-in-out flex flex-col items-center text-center ${
-                index === activeIndex 
-                  ? 'opacity-100 translate-x-0 scale-100' 
-                  : index < activeIndex 
-                    ? 'opacity-0 -translate-x-full scale-95' 
-                    : 'opacity-0 translate-x-full scale-95'
-              }`}
+      <div className="relative flex overflow-x-hidden group">
+        <motion.div
+          className="flex whitespace-nowrap gap-6 px-6"
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{
+            repeat: Infinity,
+            ease: "linear",
+            duration: 30, // Adjust speed
+          }}
+        >
+          {/* Double array to create seamless loop */}
+          {[...reviews, ...reviews].map((review, index) => (
+            <div
+              key={index}
+              className="bg-white flex-none w-[350px] md:w-[450px] p-8 rounded-[2rem] border border-[#1C1C1C]/5 shadow-sm hover:shadow-md transition-shadow duration-300"
             >
-              <div className="flex gap-1 mb-8">
+              <div className="flex gap-1 mb-6">
                 {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} className="text-gold fill-current" size={24} />
+                  <Star key={i} className="text-[#C5A880] fill-[#C5A880]" size={20} />
                 ))}
               </div>
-              
-              <blockquote className="text-2xl md:text-4xl font-light leading-relaxed mb-8 flex-grow">
+              <p className="text-xl md:text-2xl font-light text-[#1C1C1C] text-wrap leading-relaxed mb-8">
                 "{review.text}"
-              </blockquote>
-              
-              <div className="mt-auto">
-                <p className="font-bold text-lg tracking-wide">{review.name}</p>
-                <span className="text-white/60 text-sm uppercase">Verified Patient</span>
+              </p>
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full bg-[#1C1C1C] flex items-center justify-center font-body text-sm font-bold text-white uppercase tracking-widest">
+                  {review.name.charAt(0)}
+                </div>
+                <div>
+                  <h4 className="font-medium text-[#1C1C1C]">{review.name}</h4>
+                  <p className="text-xs text-[#8C8C8C] uppercase tracking-[0.2em] font-medium mt-1">Verified Client</p>
+                </div>
               </div>
             </div>
           ))}
-        </div>
+        </motion.div>
 
-        {/* Carousel Indicators */}
-        <div className="flex justify-center gap-3 mt-12">
-          {reviews.map((_, index) => (
-            <button 
-              key={index}
-              onClick={() => setActiveIndex(index)}
-              aria-label={`Go to slide ${index + 1}`}
-              className={`h-2 rounded-full transition-all duration-500 ease-in-out ${
-                index === activeIndex ? 'w-10 bg-gold' : 'w-2 bg-white/30 hover:bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
+        {/* Gradient fades on the edges for the marquee */}
+        <div className="absolute top-0 left-0 bottom-0 w-32 bg-gradient-to-r from-[#FAFAFA] to-transparent pointer-events-none" />
+        <div className="absolute top-0 right-0 bottom-0 w-32 bg-gradient-to-l from-[#FAFAFA] to-transparent pointer-events-none" />
       </div>
     </section>
   );
 }
+

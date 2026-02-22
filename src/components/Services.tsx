@@ -1,88 +1,109 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Shield, HeartPulse } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
+import clsx from "clsx";
 
 const services = [
   {
     id: 1,
-    title: "General Dentistry",
-    description: "Comprehensive care for the whole family, from routine cleanings to essential preventative treatments.",
-    icon: <Shield className="text-gold mb-6" size={32} />,
-    image: "https://images.unsplash.com/photo-1598256989800-fea5ce5146ce?q=80&w=800&auto=format&fit=crop"
+    title: "Cosmetic Design",
+    description: "Porcelain veneers and complete smile makeovers crafted to absolute perfection.",
+    image: "https://images.unsplash.com/photo-1606811841689-23dfddce3e95?q=80&w=800&auto=format&fit=crop",
+    align: "left"
   },
   {
     id: 2,
-    title: "Cosmetic Procedures",
-    description: "Transform your confidence with professional whitening, porcelain veneers, and complete smile makeovers.",
-    icon: <Sparkles className="text-gold mb-6" size={32} />,
-    image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?q=80&w=800&auto=format&fit=crop"
+    title: "Surgical Implants",
+    description: "Precision restorative foundations using advanced 3D anatomical scanning.",
+    image: "https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?q=80&w=800&auto=format&fit=crop",
+    align: "right"
   },
   {
     id: 3,
-    title: "Specialized Care",
-    description: "Expert restoration including dental implants, oral surgery, and advanced orthodontic solutions.",
-    icon: <HeartPulse className="text-gold mb-6" size={32} />,
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop"
-  }
+    title: "Orthodontic Aligners",
+    description: "Invisible and seamless structural correction for a balanced aesthetic.",
+    image: "https://images.unsplash.com/photo-1598256989800-fea5ce5146f2?q=80&w=800&auto=format&fit=crop",
+    align: "left"
+  },
 ];
 
 export default function Services() {
   return (
-    <section id="services" className="py-24 bg-white">
+    <section id="treatments" className="py-32 bg-[#F0EAE1] relative z-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-gold font-bold tracking-widest uppercase text-sm mb-3 block">Excellence in Care</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-navy mb-6">Elevate Your Dental Experience</h2>
-          <p className="text-slate-600 text-lg leading-relaxed text-balance">
-            We believe that every patient deserves a personalized, stress-free approach to oral health. 
-            Discover our comprehensive treatments designed around your comfort.
-          </p>
+        {/* Editorial Header */}
+        <div className="mb-32 max-w-2xl">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl md:text-7xl font-heading font-light text-[#1C1C1C] tracking-tight mb-8"
+          >
+            Capabilities designed <br className="hidden md:block"/> for <span className="italic text-[#C5A880]">excellence.</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-[#4A4A4A] text-xl max-w-md font-light leading-relaxed"
+          >
+            We don't just fix teeth; we architect smiles. Discover our suite of high-end treatments tailored to your unique anatomical structure.
+          </motion.p>
         </div>
 
-        {/* Concierge Service Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
-          {services.map((service, index) => (
-            <motion.div 
+        {/* Floating Editorial Showcase */}
+        <div className="space-y-32 md:space-y-48">
+          {services.map((item, i) => (
+            <motion.div
+              key={item.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.2 }}
-              key={service.id} 
-              className="group relative rounded-2xl overflow-hidden bg-light shadow-sm hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col h-full cursor-pointer"
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className={clsx(
+                "flex flex-col md:flex-row gap-12 md:gap-24 items-center",
+                item.align === "right" ? "md:flex-row-reverse" : ""
+              )}
             >
-              {/* Image Container with Scale Effect */}
-              <div className="relative h-64 overflow-hidden">
-                <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors duration-500 z-10" />
-                <img 
-                  src={service.image} 
-                  alt={service.title} 
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                />
+              {/* Image Block */}
+              <div className="w-full md:w-1/2 relative group overflow-hidden">
+                <div className="aspect-[4/5] w-full max-w-md mx-auto relative overflow-hidden bg-[#1C1C1C]/5">
+                  <motion.img 
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    src={item.image} 
+                    alt={item.title}
+                    className="object-cover w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700"
+                  />
+                </div>
               </div>
 
-              {/* Content Container */}
-              <div className="p-8 flex-grow flex flex-col relative bg-white">
-                <div className="absolute -top-12 left-8 bg-white p-4 rounded-xl shadow-lg z-20">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-bold text-navy mt-4 mb-3">{service.title}</h3>
-                <p className="text-slate-600 leading-relaxed mb-8 flex-grow">
-                  {service.description}
+              {/* Text Block */}
+              <div className="w-full md:w-1/2 flex flex-col justify-center">
+                <span className="text-[#8C8C8C] text-sm tracking-[0.2em] uppercase mb-4 font-semibold">
+                  0{item.id}
+                </span>
+                <h3 className="text-4xl md:text-5xl font-heading font-medium text-[#1C1C1C] mb-6">
+                  {item.title}
+                </h3>
+                <p className="text-[#4A4A4A] text-lg font-light max-w-sm mb-12">
+                  {item.description}
                 </p>
                 
-                {/* Explore Link */}
-                <div className="flex items-center text-gold font-semibold uppercase tracking-wide text-sm mt-auto group-hover:text-navy transition-colors">
-                  <span>Explore Treatments</span>
-                  <ArrowRight className="ml-2 transform group-hover:translate-x-2 transition-transform" size={16} />
-                </div>
+                <a href="#book" className="group inline-flex items-center gap-3 text-[#1C1C1C] font-medium tracking-wide uppercase text-sm">
+                  <span className="relative overflow-hidden">
+                    <span className="block transition-transform duration-300 group-hover:-translate-y-full">Learn More</span>
+                    <span className="absolute inset-0 block transition-transform duration-300 translate-y-full group-hover:translate-y-0 text-[#C5A880]">Learn More</span>
+                  </span>
+                  <ArrowUpRight size={16} className="text-[#C5A880] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+                </a>
               </div>
             </motion.div>
           ))}
         </div>
-
       </div>
     </section>
   );

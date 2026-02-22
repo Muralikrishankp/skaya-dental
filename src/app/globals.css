@@ -3,29 +3,50 @@
 @tailwind utilities;
 
 @layer base {
-  html {
-    scroll-behavior: smooth;
-  }
-
   body {
-    @apply bg-slate-50 text-slate-800 antialiased;
+    background-color: #FAFAFA; /* Soft luxury beige/white */
+    color: #1C1C1C; /* Charcoal charcoal for readable editorial feel */
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 300; /* Editorial thin */
   }
 
   ::selection {
-    @apply bg-[#1e3a8a] text-white;
+    @apply bg-[#C5A880]/30 text-black; /* Soft champagne gold */
   }
 }
 
 @layer utilities {
-  .glass {
-    @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .glass-pill {
+    @apply bg-white/40 backdrop-blur-xl border border-black/5 shadow-[0_8px_32px_0_rgba(0,0,0,0.05)];
   }
 
-  .glass-dark {
-    @apply bg-[#1e3a8a]/80 backdrop-blur-md border border-[#1e3a8a]/20 shadow-xl text-white;
+  /* Deep rich cards for contrast */
+  .glass-card {
+    @apply bg-[#1C1C1C] backdrop-blur-2xl border border-white/10 shadow-2xl text-[#FAFAFA];
+  }
+  
+  /* Primary light cards */
+  .glass-card-light {
+    @apply bg-white/80 backdrop-blur-2xl border border-black/5 max-md:border-black/10 shadow-xl text-[#1C1C1C];
   }
 
-  .text-balance {
-    text-wrap: balance;
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#1C1C1C] to-[#4A4A4A];
+  }
+  
+  .text-gradient-gold {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-[#C5A880] to-[#E3C69A];
   }
 }
+
