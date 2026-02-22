@@ -23,7 +23,7 @@ const services = [
     id: 3,
     title: "Orthodontic Aligners",
     description: "Invisible and seamless structural correction for a balanced aesthetic.",
-    image: "https://images.unsplash.com/photo-1598256989445-551ee6b0c20f?q=80&w=800&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=800&auto=format&fit=crop",
     align: "left"
   },
 ];
