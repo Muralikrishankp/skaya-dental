@@ -29,13 +29,21 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center">
         
         {/* Brand */}
-        <div className="flex items-center gap-3 group cursor-pointer">
-          <div className="relative w-10 h-10 overflow-hidden rounded-full shadow-sm group-hover:scale-105 transition-transform duration-300">
+        <div className="flex items-center gap-4 group cursor-pointer">
+          <div className="relative w-12 h-12 md:w-14 md:h-14 overflow-hidden rounded-full shadow-sm group-hover:scale-105 transition-transform duration-300 shrink-0">
             <Image src="/logo.png" alt="Skaya Dental Logo" fill className="object-cover" />
           </div>
-          <span className="font-heading font-bold text-xl md:text-2xl tracking-widest uppercase text-[#1C1C1C]">
-            Skaya
-          </span>
+          <div className="flex flex-col">
+            <span className="font-heading font-bold text-lg md:text-xl tracking-[0.15em] uppercase text-[#1C1C1C] leading-none mb-1">
+              Skaya
+            </span>
+            <span className="font-heading font-light text-xs md:text-sm tracking-[0.3em] uppercase text-[#1C1C1C] leading-none mb-1">
+              Dental
+            </span>
+            <span className="text-[8px] md:text-[10px] tracking-wider uppercase text-[#8C8C8C] font-body">
+              The smile unedited
+            </span>
+          </div>
         </div>
 
         {/* Desktop Links */}

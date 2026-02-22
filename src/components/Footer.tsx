@@ -10,11 +10,21 @@ export default function Footer() {
         {/* Top Section - Links and Contact */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
           <div className="lg:col-span-2">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="relative w-12 h-12 overflow-hidden rounded-full shadow-sm">
+            <div className="flex items-center gap-4 mb-8">
+              <div className="relative w-14 h-14 overflow-hidden rounded-full shadow-sm shrink-0">
                 <Image src="/logo.png" alt="Skaya Dental Logo" fill className="object-cover" />
               </div>
-              <h3 className="text-2xl font-heading font-medium text-[#1C1C1C]">Skaya Dental</h3>
+              <div className="flex flex-col">
+                <span className="font-heading font-bold text-xl md:text-2xl tracking-[0.15em] uppercase text-[#1C1C1C] leading-none mb-1">
+                  Skaya
+                </span>
+                <span className="font-heading font-light text-sm md:text-base tracking-[0.3em] uppercase text-[#1C1C1C] leading-none mb-1.5">
+                  Dental
+                </span>
+                <span className="text-[10px] tracking-wider uppercase text-[#8C8C8C] font-body">
+                  The smile unedited
+                </span>
+              </div>
             </div>
             <p className="text-[#4A4A4A] font-light text-xl max-w-sm mb-8 leading-relaxed">
               Redefining dental wellness through advanced technology and profound comfort.
